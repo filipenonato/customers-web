@@ -13,20 +13,21 @@ module.exports = function() {
       type: String, 
       required: true
     }, 
+    maritalStatus: { 
+      type: String, 
+      required: true
+    },
     email: {
       type: String, 
-      required: true, 
-      index: {
-        unique: true
-      }
+      required: true
     },     
     address:{
       type: String, 
-      required: true,       
+      required: true       
     },
     phones:{
       type: Array, 
-      required: true,       
+      required: true       
     }
   });
 

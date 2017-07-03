@@ -13,22 +13,21 @@ module.exports = function(app) {
      var data = {       
       "cpf" : req.body.cpf,
       "name" : req.body.name, 
+      "maritalStatus": req.body.maritalStatus,
       "email" : req.body.email, 
       "address" : req.body.address,
-      "phones": req.body.phone
+      "phones": req.body.phones
     };
 
     if (!data.cpf || !cpfValidator.validate(data.cpf)) {
       res.status(500).json({ message: 'O CPF informado possui valor inválido!' });
     } else {
-            
-        var customer = await Customer.find({ cpf: data.createCPF}).exec();
-        
-        Customer.find({ cpf: data.createCPF}).exec()
+                            
+        Customer.find({ cpf: data.cpf}).exec()
         .then(
           function(customer) {
             
-            if(!customer) {
+            if(!customer || customer.length === 0) {
               
               Customer.create(data)
               .then(
@@ -57,16 +56,17 @@ module.exports = function(app) {
 
   controller.update = function(req, res) {
     
-    var _id = sanitize(req.params.id);
+    var _cpf = sanitize(req.params.cpf);
 
     var data = {             
       "name" : req.body.name, 
+      "maritalStatus": req.body.maritalStatus,
       "email" : req.body.email, 
       "address" : req.body.address,
-      "phones": req.body.phone
+      "phones": req.body.phones
     };
 
-    Customer.findByIdAndUpdate(_id, data).exec()
+    Customer.findOneAndUpdate({cpf: _cpf}, data).exec()
      .then(
       function(customer) {
         res.json(customer);
@@ -81,9 +81,9 @@ module.exports = function(app) {
 
   controller.retrieve = function(req, res) {
 
-    var _id = sanitize(req.params.id);
+    var _cpf = sanitize(req.params.cpf);
     
-    Customer.findById(_id).exec()
+    Customer.findOne({cpf: _cpf}).exec()
     .then(
       function(customer) {
          res.json(customer); 
@@ -97,9 +97,9 @@ module.exports = function(app) {
   
   controller.delete = function(req, res) { 
     
-    var _id = sanitize(req.params.id);
+    var _cpf = sanitize(req.params.cpf);
 
-    Customer.remove({"_id" : _id}).exec()
+    Customer.remove({"cpf" : _cpf}).exec()
     .then(
       function() {
         res.end();  
@@ -110,8 +110,8 @@ module.exports = function(app) {
     );
   };
 
-  controller.search = function(req, res) {
-    Customer.find().populate('_id').exec()
+  controller.listAll = function(req, res) {
+    Customer.find().exec()
     .then(
       function(customer) {
          res.json(customer); 
@@ -124,7 +124,6 @@ module.exports = function(app) {
   };
   
   function validateRequiredFields(data){
-
         
   }
         
