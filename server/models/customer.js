@@ -24,8 +24,8 @@ module.exports = function() {
       type: String, 
       required: true,       
     },
-    phone:{
-      type: String, 
+    phones:{
+      type: Array, 
       required: true,       
     }
   });

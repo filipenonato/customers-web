@@ -38,7 +38,7 @@ module.exports = function() {
   //carrega os controllers(endpoints) da aplicação
   load('models', {cwd: 'server'})
     .then('controllers')    
-    .then('routes')
+    .then('routes')    
     .into(app);
 
   app.get('*', function(req, res) {    

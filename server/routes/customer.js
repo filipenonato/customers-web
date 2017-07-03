@@ -2,11 +2,11 @@ module.exports = function (app) {
 	
   var controller = app.controllers.customer;
 
-  app.route('/customer')
+  app.route('/v1/customer')
   	 .get(controller.search)
   	 .post(controller.create);
 
-  app.route('/customer/:id')
+  app.route('/v1/customer/:id')
      .get(controller.retrieve)
      .delete(controller.delete)
      .put(controller.update)
