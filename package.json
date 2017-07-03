@@ -1,0 +1,23 @@
+{
+  "name": "customers-web",
+  "version": "1.0.0",
+  "description": "Aplicação web para gerenciamento de clientes",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Filipe Nonato de Freitas Souza <filipe.nonato@outlook.com>",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "express-load": "^1.1.16",
+    "helmet": "^3.6.1",
+    "method-override": "^2.3.9",
+    "mongo-sanitize": "^1.0.0",
+    "mongoose": "^4.11.0"
+  }
+}
