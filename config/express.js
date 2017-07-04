@@ -1,8 +1,6 @@
 var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-//var helmet = require('helmet');
 
 module.exports = function() {
 
@@ -19,23 +17,11 @@ module.exports = function() {
   //Extended  usado para indicar que utiliza a bibliotec QS para parser
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
-  
-  //Habilita o tratamento de requisições que possuem o verbo DELETE e PUT, para browsers
-  //não têm este suporte
+    
   app.use(require('method-override')());
 
-  app.use(cookieParser());
-   
-  /*
-  app.use(helmet.xframe());
-  app.use(helmet.xssFilter());
-  app.use(helmet.nosniff());
-  */
-
-  //Disabilita informação da tecnologia presente no servidor
   app.disable('x-powered-by');
 
-  //carrega os controllers(endpoints) da aplicação
   load('models', {cwd: 'server'})
     .then('controllers')    
     .then('routes')    
