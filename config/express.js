@@ -8,6 +8,7 @@ module.exports = function() {
   
   app.set('port', 3000);
   
+  //TODO: será usado no futuro para prover as páginas estáticas para criação do frontend da aplicação
   app.use(express.static('./client'));
     
   app.use(bodyParser.urlencoded({extended: true}));

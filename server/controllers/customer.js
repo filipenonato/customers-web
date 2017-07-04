@@ -70,7 +70,7 @@ module.exports = function(app) {
 
               var customerObj = result[0];
               var data = {             
-                "cpf" : customerObj.cpf, 
+                "cpf" : _cpf, 
                 "name" : req.body.name || customerObj.name, 
                 "maritalStatus": req.body.maritalStatus || customerObj.maritalStatus,
                 "email" : req.body.email || customerObj.email, 
@@ -79,11 +79,11 @@ module.exports = function(app) {
               };
               
               var resultValidation = customerValidator.validate(data);
-
+              
               if (resultValidation.length === 0) {
-                Customer.update(data)
+                Customer.findOneAndUpdate(_cpf, data)
                 .then(
-                  function(customer) {
+                  function(customer) {                    
                     res.status(201).json(data);
                   }, 
                   function(error) {

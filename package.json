@@ -4,12 +4,16 @@
   "description": "Aplicação web para gerenciamento de clientes",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --timeout 10000",
     "start": "node server.js"
   },
   "author": "Filipe Nonato de Freitas Souza <filipe.nonato@outlook.com>",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0"
+  },
   "dependencies": {
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
@@ -17,7 +21,7 @@
     "express-load": "^1.1.16",
     "gerador-validador-cpf": "^3.1.1",
     "helmet": "^3.6.1",
-    "method-override": "^2.3.9",
+    "method-override": "^2.3.9",    
     "mongo-sanitize": "^1.0.0",
     "mongoose": "^4.11.0"
   }
