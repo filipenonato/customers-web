@@ -4,17 +4,12 @@ var bodyParser = require('body-parser');
 
 module.exports = function() {
 
-  //Instancia express
   var app = express();
   
-  //Porta onde roda o express
   app.set('port', 3000);
   
-  //Midleware para servir arquivos estáticos
   app.use(express.static('./client'));
-  
-  //Middleware que realiza o parser da body da requisição
-  //Extended  usado para indicar que utiliza a bibliotec QS para parser
+    
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
     
@@ -28,7 +23,23 @@ module.exports = function() {
     .into(app);
 
   app.get('*', function(req, res) {    
-     res.status(404).json({ message: 'Ação não permitida' });   
+     res.status(404).json({ message: 'Ação não permitida!!' });   
+  });
+
+  app.post('*', function(req, res) {    
+     res.status(404).json({ message: 'Ação não permitida!!' });   
+  });
+
+  app.delete('*', function(req, res) {    
+     res.status(404).json({ message: 'Ação não permitida!!' });   
+  });
+
+  app.put('*', function(req, res) {    
+     res.status(404).json({ message: 'Ação não permitida!!' });   
+  });
+
+  app.patch('*', function(req, res) {    
+     res.status(404).json({ message: 'Ação não permitida!!' });   
   });
     
   return app;
